@@ -1,0 +1,31 @@
+<h1>$band.getName()</h1>
+
+#if($band.getVenues())
+  <p>Here are the venues for this band:</p>
+  <ul>
+    #foreach($venue in $band.getVenues())
+      <li>$venue.getDescription()</li>
+    #end
+  </ul>
+#end
+
+<h4>Add a venue to this band:</h4>
+
+<form action='/add_venues' method='post'>
+  <input id="band_id" name="band_id" type="hidden" value="$band.getId()">
+  <label for="venue_id">Select a venue</label>
+  <select id='venue_id' name='venue_id' type='text'>
+    #foreach($venue in $allVenues)
+      <option value="$venue.getId()"> $venue.getDescription() </option>
+    #end
+  </select>
+  <button type="submit" class="btn btn-info">Add venue to this band</button>
+</form>
+
+<p><a href="/bands/$band.getId()/edit">Edit this band</a></p>
+
+<form action='/bands/$band.getId()/delete' method='post'>
+  <button type="submit" class="btn-danger" id="delete">Delete</button>
+</form>
+
+<p><a href="/">Home</a></p>

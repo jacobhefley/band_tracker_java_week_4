@@ -14,123 +14,123 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/categories", (request, response) -> {
+    get("/bands", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("categories", Category.all());
-      model.put("template", "templates/categories.vtl");
+      model.put("bands", Band.all());
+      model.put("template", "templates/bands.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/categories/:id", (request,response) ->{
+    get("/bands/:id", (request,response) ->{
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Category category = Category.find(Integer.parseInt(request.params("id")));
-      model.put("category", category);
-      model.put("allTasks", Task.all());
-      model.put("template", "templates/category.vtl");
+      Band band = Band.find(Integer.parseInt(request.params("id")));
+      model.put("band", band);
+      model.put("allVenues", Venue.all());
+      model.put("template", "templates/band.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/categories", (request, response) -> {
+    post("/bands", (request, response) -> {
       String name = request.queryParams("name");
-      Category newCategory = new Category(name);
-      newCategory.save();
-      response.redirect("/categories");
+      Band newBand = new Band(name);
+      newBand.save();
+      response.redirect("/bands");
       return null;
     });
 
-    get("/categories/:id/edit", (request,response) -> {
+    get("/bands/:id/edit", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Category category = Category.find(Integer.parseInt(request.params("id")));
-      model.put("category", category);
-      model.put("template", "templates/category-edit.vtl");
+      Band band = Band.find(Integer.parseInt(request.params("id")));
+      model.put("band", band);
+      model.put("template", "templates/band-edit.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/add_categories", (request, response) -> {
-      int taskId = Integer.parseInt(request.queryParams("task_id"));
-      int categoryId = Integer.parseInt(request.queryParams("category_id"));
-      Category category = Category.find(categoryId);
-      Task task = Task.find(taskId);
-      task.addCategory(category);
-      response.redirect("/tasks/" + taskId);
+    post("/add_bands", (request, response) -> {
+      int venueId = Integer.parseInt(request.queryParams("venue_id"));
+      int bandId = Integer.parseInt(request.queryParams("band_id"));
+      Band band = Band.find(bandId);
+      Venue venue = Venue.find(venueId);
+      venue.addBand(band);
+      response.redirect("/venues/" + venueId);
       return null;
     });
 
-    post("/categories/:id/delete", (request,response) -> {
-      int categoryId = Integer.parseInt(request.params("id"));
-      Category category = Category.find(categoryId);
-      category.delete();
-      response.redirect("/categories");
+    post("/bands/:id/delete", (request,response) -> {
+      int bandId = Integer.parseInt(request.params("id"));
+      Band band = Band.find(bandId);
+      band.delete();
+      response.redirect("/bands");
       return null;
     });
-    post("/categories/:id", (request,response) -> {
-      int categoryId = Integer.parseInt(request.params("id"));
-      Category category = Category.find(categoryId);
+    post("/bands/:id", (request,response) -> {
+      int bandId = Integer.parseInt(request.params("id"));
+      Band band = Band.find(bandId);
       String newName = request.queryParams("name");
-      category.update(newName);
-      response.redirect("/categories/" + categoryId);
+      band.update(newName);
+      response.redirect("/bands/" + bandId);
       return null;
     });
 
 
 
 
-    get("/tasks", (request, response) -> {
+    get("/venues", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("tasks", Task.all());
-      model.put("template", "templates/tasks.vtl");
+      model.put("venues", Venue.all());
+      model.put("template", "templates/venues.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/tasks/:id", (request,response) -> {
+    get("/venues/:id", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Task task = Task.find(Integer.parseInt(request.params("id")));
-      model.put("task", task);
-      model.put("allCategories", Category.all());
-      model.put("template", "templates/task.vtl");
+      Venue venue = Venue.find(Integer.parseInt(request.params("id")));
+      model.put("venue", venue);
+      model.put("allBands", Band.all());
+      model.put("template", "templates/venue.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/tasks/:id/edit", (request,response) -> {
+    get("/venues/:id/edit", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      Task task = Task.find(Integer.parseInt(request.params("id")));
-      model.put("task", task);
-      model.put("template", "templates/task-edit.vtl");
+      Venue venue = Venue.find(Integer.parseInt(request.params("id")));
+      model.put("venue", venue);
+      model.put("template", "templates/venue-edit.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/tasks", (request, response) -> {
+    post("/venues", (request, response) -> {
       String description = request.queryParams("description");
-      Task newTask = new Task(description);
-      newTask.save();
-      response.redirect("/tasks");
+      Venue newVenue = new Venue(description);
+      newVenue.save();
+      response.redirect("/venues");
       return null;
     });
 
-    post("/add_tasks", (request, response) -> {
-      int taskId = Integer.parseInt(request.queryParams("task_id"));
-      int categoryId = Integer.parseInt(request.queryParams("category_id"));
-      Category category = Category.find(categoryId);
-      Task task = Task.find(taskId);
-      category.addTask(task);
-      response.redirect("/categories/" + categoryId);
+    post("/add_venues", (request, response) -> {
+      int venueId = Integer.parseInt(request.queryParams("venue_id"));
+      int bandId = Integer.parseInt(request.queryParams("band_id"));
+      Band band = Band.find(bandId);
+      Venue venue = Venue.find(venueId);
+      band.addVenue(venue);
+      response.redirect("/bands/" + bandId);
       return null;
     });
 
-    post("/tasks/:id", (request,response) -> {
-      int taskId = Integer.parseInt(request.params("id"));
-      Task task = Task.find(taskId);
+    post("/venues/:id", (request,response) -> {
+      int venueId = Integer.parseInt(request.params("id"));
+      Venue venue = Venue.find(venueId);
       String newDescription = request.queryParams("description");
-      task.update(newDescription);
-      response.redirect("/tasks/" + taskId);
+      venue.update(newDescription);
+      response.redirect("/venues/" + venueId);
       return null;
     });
 
-    post("/tasks/:id/delete", (request,response) -> {
-      int taskId = Integer.parseInt(request.params("id"));
-      Task task = Task.find(taskId);
-      task.delete();
-      response.redirect("/tasks");
+    post("/venues/:id/delete", (request,response) -> {
+      int venueId = Integer.parseInt(request.params("id"));
+      Venue venue = Venue.find(venueId);
+      venue.delete();
+      response.redirect("/venues");
       return null;
     });
   }

@@ -1,0 +1,9 @@
+<h3>Update venue:</h3>
+
+<form action="/venues/$venue.getId()" method="post">
+  <label for="description">New description</label>
+  <input id="description" name="description" type="text" value="$venue.getDescription()">
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+
+<p><a href="/venues/$venue.getId()">Back</a></p>

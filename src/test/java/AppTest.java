@@ -30,76 +30,76 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void categoryIsCreatedTest() {
+  public void bandIsCreatedTest() {
     goTo("http://localhost:4567/");
-    click("a", withText("Categories"));
+    click("a", withText("Bands"));
     fill("#name").with("Household chores");
     submit(".btn");
     assertThat(pageSource()).contains("Household chores");
   }
 
   @Test
-  public void taskIsCreatedTest() {
+  public void venueIsCreatedTest() {
     goTo("http://localhost:4567/");
-    click("a", withText("Tasks"));
+    click("a", withText("Venues"));
     fill("#description").with("Mow the lawn");
     submit(".btn");
     assertThat(pageSource()).contains("Mow the lawn");
   }
 
   @Test
-  public void categoryShowPageDisplaysName() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
+  public void bandShowPageDisplaysName() {
+    Band testBand = new Band("Household chores");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
     assertThat(pageSource()).contains("Household chores");
   }
 
   @Test
-  public void taskShowPageDisplaysDescription() {
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
+  public void venueShowPageDisplaysDescription() {
+    Venue testVenue = new Venue("Mow the lawn");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
     assertThat(pageSource()).contains("Mow the lawn");
   }
 
   @Test
-  public void taskIsAddedToCategory() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
+  public void venueIsAddedToBand() {
+    Band testBand = new Band("Household chores");
+    testBand.save();
+    Venue testVenue = new Venue("Mow the lawn");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
-    fillSelect("#task_id").withText("Mow the lawn");
+    fillSelect("#venue_id").withText("Mow the lawn");
     submit(".btn");
     assertThat(pageSource()).contains("<li>");
     assertThat(pageSource()).contains("Mow the lawn");
   }
 
   @Test
-  public void categoryIsAddedToTask() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
+  public void bandIsAddedToVenue() {
+    Band testBand = new Band("Household chores");
+    testBand.save();
+    Venue testVenue = new Venue("Mow the lawn");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
-    fillSelect("#category_id").withText("Household chores");
+    fillSelect("#band_id").withText("Household chores");
     submit(".btn");
     assertThat(pageSource()).contains("<li>");
     assertThat(pageSource()).contains("Household chores");
   }
 
   @Test
-  public void categoryNameIsUpdated() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
+  public void bandNameIsUpdated() {
+    Band testBand = new Band("Household chores");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
-    click("a", withText("Edit this category"));
+    click("a", withText("Edit this band"));
     fill("#name").with("Fun things");
     submit(".btn");
     goTo(url);
@@ -107,22 +107,22 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void categoryIsDeleted() {
-    Category testCategory = new Category("Household chores");
-    testCategory.save();
-    String url = String.format("http://localhost:4567/categories/%d", testCategory.getId());
+  public void bandIsDeleted() {
+    Band testBand = new Band("Household chores");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
     submit("#delete");
     goTo(url);
-    assertThat(pageSource()).contains("$category.getName()");
+    assertThat(pageSource()).contains("$band.getName()");
   }
   @Test
-  public void taskDescriptionIsUpdated() {
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
+  public void venueDescriptionIsUpdated() {
+    Venue testVenue = new Venue("Mow the lawn");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
-    click("a", withText("Edit this task"));
+    click("a", withText("Edit this venue"));
     fill("#description").with("Go out dancing");
     submit(".btn");
     goTo(url);
@@ -130,14 +130,14 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void taskIsDeleted() {
-    Task testTask = new Task("Mow the lawn");
-    testTask.save();
-    String url = String.format("http://localhost:4567/tasks/%d", testTask.getId());
+  public void venueIsDeleted() {
+    Venue testVenue = new Venue("Mow the lawn");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
     submit("#delete");
     goTo(url);
-    assertThat(pageSource()).contains("$task.getDescription()");
+    assertThat(pageSource()).contains("$venue.getDescription()");
   }
 
 }
