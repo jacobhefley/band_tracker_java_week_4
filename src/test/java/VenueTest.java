@@ -78,7 +78,7 @@ public class VenueTest {
     Venue myVenue = new Venue("Mow the lawn");
     myVenue.save();
     myVenue.addBand(myBand);
-    Band savedBand = myVenue.getCategories().get(0);
+    Band savedBand = myVenue.getBands().get(0);
     assertTrue(myBand.equals(savedBand));
   }
 
@@ -89,7 +89,7 @@ public class VenueTest {
     Venue myVenue = new Venue("Mow the lawn");
     myVenue.save();
     myVenue.addBand(myBand);
-    List savedCategories = myVenue.getCategories();
+    List savedCategories = myVenue.getBands();
     assertEquals(1, savedCategories.size());
   }
   @Test

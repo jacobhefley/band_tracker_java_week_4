@@ -1,11 +1,19 @@
-<h1>All bands</h1>
-
-<ul>
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation" class="active"><a href="/bands">Bands</a></li>
+        <li role="presentation"><a href="/venues">Venues</a></li>
+      </ul>
+    </nav>
+  </div>
+<div class="jumbotron">
+<h2>All bands</h2>
   #foreach ($band in $bands)
-    <li><a href="/bands/$band.getId()">$band.getName()</a></li>
+    <p><a href="/bands/$band.getId()">$band.getName()</a></p>
   #end
-</ul>
-
+</div>
 <p>Add a new band:</p>
 
 <form action="/bands" method="post">
@@ -13,5 +21,4 @@
   <input id="name" name="name" type="text">
   <button type="submit" class="btn btn-success">Add Band</button>
 </form>
-
-<p><a href="/">Home</a></p>
+</div>

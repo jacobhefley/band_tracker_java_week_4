@@ -1,14 +1,22 @@
-<h1>$band.getName()</h1>
-
-#if($band.getVenues())
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/bands">Bands</a></li>
+        <li role="presentation" class="active"><a href="/venues">Venues</a></li>
+      </ul>
+    </nav>
+  </div>
+<div class="jumbotron">
+  <h2>$band.getName()</h2>
+  #if($band.getVenues())
   <p>Here are the venues for this band:</p>
-  <ul>
     #foreach($venue in $band.getVenues())
-      <li>$venue.getDescription()</li>
+      <h3>$venue.getDescription()</h3>
     #end
-  </ul>
-#end
-
+  #end
+</div>
 <h4>Add a venue to this band:</h4>
 
 <form action='/add_venues' method='post'>
@@ -28,4 +36,4 @@
   <button type="submit" class="btn-danger" id="delete">Delete</button>
 </form>
 
-<p><a href="/">Home</a></p>
+</div>

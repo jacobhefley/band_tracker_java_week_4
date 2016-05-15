@@ -1,11 +1,19 @@
-<h1>All venues</h1>
-
-<ul>
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/bands">Bands</a></li>
+        <li role="presentation" class="active"><a href="/venues">Venues</a></li>
+      </ul>
+    </nav>
+  </div>
+<div class="jumbotron">
+  <h2>All Venues</h2>
   #foreach ($venue in $venues)
-    <li><a href="/venues/$venue.getId()">$venue.getDescription()</a></li>
+    <p><a href="/venues/$venue.getId()">$venue.getDescription()</a></p>
   #end
-</ul>
-
+</div>
 <p>Add a new venue:</p>
 
 <form action="/venues" method="post">
@@ -13,5 +21,5 @@
   <input id="description" name="description" type="text">
   <button type="submit" class="btn btn-success">Add Venue</button>
 </form>
-
-<p><a href="/">Home</a></p>
+</div>
+</div>
