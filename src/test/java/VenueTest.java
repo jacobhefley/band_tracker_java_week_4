@@ -83,17 +83,17 @@ public class VenueTest {
   }
 
   @Test
-  public void getCategories_returnsAllCategories_List() {
+  public void getBands_returnsAllBands_List() {
     Band myBand = new Band("House");
     myBand.save();
     Venue myVenue = new Venue("Mow the lawn");
     myVenue.save();
     myVenue.addBand(myBand);
-    List savedCategories = myVenue.getBands();
-    assertEquals(1, savedCategories.size());
+    List savedBands = myVenue.getBands();
+    assertEquals(1, savedBands.size());
   }
   @Test
-  public void delete_deletesAllVenuesAndCategoriesAssociations() {
+  public void delete_deletesAllVenuesAndBandsAssociations() {
     Band myBand = new Band("House");
     myBand.save();
     Venue myVenue = new Venue("Mow the lawn");

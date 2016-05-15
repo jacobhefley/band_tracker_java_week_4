@@ -57,15 +57,6 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void venueShowPageDisplaysDescription() {
-    Venue testVenue = new Venue("Downtown");
-    testVenue.save();
-    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
-    goTo(url);
-    assertThat(pageSource()).contains("Downtown");
-  }
-
-  @Test
   public void venueIsAddedToBand() {
     Band testBand = new Band("House");
     testBand.save();
@@ -76,19 +67,6 @@ public class AppTest extends FluentTest {
     fillSelect("#venue_id").withText("Downtown");
     submit(".btn btn-success");
     assertThat(pageSource()).contains("Downtown");
-  }
-
-  @Test
-  public void bandIsAddedToVenue() {
-    Band testBand = new Band("House");
-    testBand.save();
-    Venue testVenue = new Venue("Downtown");
-    testVenue.save();
-    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
-    goTo(url);
-    fillSelect("#band_id").withText("House");
-    submit(".btn");
-    assertThat(pageSource()).contains("House");
   }
 
   @Test
@@ -113,29 +91,6 @@ public class AppTest extends FluentTest {
     submit("#delete");
     goTo(url);
     assertThat(pageSource()).contains("$band.getName()");
-  }
-  @Test
-  public void venueDescriptionIsUpdated() {
-    Venue testVenue = new Venue("Downtown");
-    testVenue.save();
-    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
-    goTo(url);
-    click("a", withText("Edit this venue"));
-    fill("#description").with("Danzing");
-    submit(".btn");
-    goTo(url);
-    assertThat(pageSource()).contains("Danzing");
-  }
-
-  @Test
-  public void venueIsDeleted() {
-    Venue testVenue = new Venue("Downtown");
-    testVenue.save();
-    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
-    goTo(url);
-    submit("#delete");
-    goTo(url);
-    assertThat(pageSource()).contains("$venue.getDescription()");
   }
 
 }

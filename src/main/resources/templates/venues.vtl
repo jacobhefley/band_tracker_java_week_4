@@ -10,7 +10,7 @@
   </div>
   <div class="jumbotron">
     #foreach ($venue in $venues)
-      <p><a href="/venues/$venue.getId()">$venue.getDescription()</a></p>
+      <p>$venue.getDescription()</a></p>
     #end
     <p></p>
     <form action="/venues" method="post">
