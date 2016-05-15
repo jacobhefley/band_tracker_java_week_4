@@ -1,9 +1,18 @@
-<h3>Update band:</h3>
-
-<form action="/bands/$band.getId()" method="post">
-  <label for="name">New name</label>
-  <input id="name" name="name" type="text" value="$band.getName()" required>
-  <button type="submit" class="btn btn-success">Update</button>
-</form>
-
-<p><a href="/bands/$band.getId()">Back</a></p>
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/bands">Bands</a></li>
+        <li role="presentation"><a href="/venues">Venues</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="jumbotron">
+    <h2>Band: <strong>$band.getName()</strong></h2>
+    <form action="/bands/$band.getId()" method="post">
+      <input id="name" name="name" type="text" placeholder="Updated Name" required>
+      <button type="submit" class="btn btn-success" href="/bands/$band.getId()">Update Band</button>
+    </form>
+  </div>
+</div>

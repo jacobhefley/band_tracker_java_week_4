@@ -11,7 +11,7 @@
   <div class="jumbotron">
     <h2>Band: <strong>$band.getName()<strong></h2>
     #if($band.getVenues())
-    <h4>All of the venues <strong>$band.getName()<strong> has played:</h4>
+    <h4>All of the venues <strong>$band.getName()<strong> has played at:</h4>
       #foreach($visited_venue in $band.getVenues())
         <h3>$visited_venue.getDescription()</h3>
       #end

@@ -12,9 +12,8 @@
     #foreach ($band in $bands)
       <p><a href="/bands/$band.getId()">$band.getName()</a></p>
     #end
-    <p></p>
     <form action="/bands" method="post">
-      <input id="name" name="name" type="text" placeholder="name" required>
+      <input id="name" name="name" type="text" placeholder="Band Name" required>
       <button type="submit" class="btn btn-success">Add Band</button>
     </form>
   </div>
