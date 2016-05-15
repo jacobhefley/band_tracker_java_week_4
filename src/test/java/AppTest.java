@@ -33,69 +33,67 @@ public class AppTest extends FluentTest {
   public void bandIsCreatedTest() {
     goTo("http://localhost:4567/");
     click("a", withText("Bands"));
-    fill("#name").with("Household chores");
+    fill("#name").with("House");
     submit(".btn");
-    assertThat(pageSource()).contains("Household chores");
+    assertThat(pageSource()).contains("House");
   }
 
   @Test
   public void venueIsCreatedTest() {
     goTo("http://localhost:4567/");
     click("a", withText("Venues"));
-    fill("#description").with("Mow the lawn");
+    fill("#description").with("Tavern");
     submit(".btn");
-    assertThat(pageSource()).contains("Mow the lawn");
+    assertThat(pageSource()).contains("Tavern");
   }
 
   @Test
   public void bandShowPageDisplaysName() {
-    Band testBand = new Band("Household chores");
+    Band testBand = new Band("House");
     testBand.save();
     String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
-    assertThat(pageSource()).contains("Household chores");
+    assertThat(pageSource()).contains("House");
   }
 
   @Test
   public void venueShowPageDisplaysDescription() {
-    Venue testVenue = new Venue("Mow the lawn");
+    Venue testVenue = new Venue("Downtown");
     testVenue.save();
     String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
-    assertThat(pageSource()).contains("Mow the lawn");
+    assertThat(pageSource()).contains("Downtown");
   }
 
   @Test
   public void venueIsAddedToBand() {
-    Band testBand = new Band("Household chores");
+    Band testBand = new Band("House");
     testBand.save();
-    Venue testVenue = new Venue("Mow the lawn");
+    Venue testVenue = new Venue("Downtown");
     testVenue.save();
     String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
-    fillSelect("#venue_id").withText("Mow the lawn");
-    submit(".btn");
-    assertThat(pageSource()).contains("<li>");
-    assertThat(pageSource()).contains("Mow the lawn");
+    fillSelect("#venue_id").withText("Downtown");
+    submit(".btn btn-success");
+    assertThat(pageSource()).contains("Downtown");
   }
 
   @Test
   public void bandIsAddedToVenue() {
-    Band testBand = new Band("Household chores");
+    Band testBand = new Band("House");
     testBand.save();
-    Venue testVenue = new Venue("Mow the lawn");
+    Venue testVenue = new Venue("Downtown");
     testVenue.save();
     String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
-    fillSelect("#band_id").withText("Household chores");
+    fillSelect("#band_id").withText("House");
     submit(".btn");
-    assertThat(pageSource()).contains("<li>");
-    assertThat(pageSource()).contains("Household chores");
+    assertThat(pageSource()).contains("House");
   }
 
   @Test
   public void bandNameIsUpdated() {
-    Band testBand = new Band("Household chores");
+    Band testBand = new Band("House");
     testBand.save();
     String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
@@ -108,7 +106,7 @@ public class AppTest extends FluentTest {
 
   @Test
   public void bandIsDeleted() {
-    Band testBand = new Band("Household chores");
+    Band testBand = new Band("House");
     testBand.save();
     String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
@@ -118,20 +116,20 @@ public class AppTest extends FluentTest {
   }
   @Test
   public void venueDescriptionIsUpdated() {
-    Venue testVenue = new Venue("Mow the lawn");
+    Venue testVenue = new Venue("Downtown");
     testVenue.save();
     String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);
     click("a", withText("Edit this venue"));
-    fill("#description").with("Go out dancing");
+    fill("#description").with("Danzing");
     submit(".btn");
     goTo(url);
-    assertThat(pageSource()).contains("Go out dancing");
+    assertThat(pageSource()).contains("Danzing");
   }
 
   @Test
   public void venueIsDeleted() {
-    Venue testVenue = new Venue("Mow the lawn");
+    Venue testVenue = new Venue("Downtown");
     testVenue.save();
     String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
     goTo(url);

@@ -8,17 +8,14 @@
       </ul>
     </nav>
   </div>
-<div class="jumbotron">
-<h2>All bands</h2>
-  #foreach ($band in $bands)
-    <p><a href="/bands/$band.getId()">$band.getName()</a></p>
-  #end
-</div>
-<p>Add a new band:</p>
-
-<form action="/bands" method="post">
-  <label for="name">Band name</label>
-  <input id="name" name="name" type="text">
-  <button type="submit" class="btn btn-success">Add Band</button>
-</form>
+  <div class="jumbotron">
+    #foreach ($band in $bands)
+      <p><a href="/bands/$band.getId()">$band.getName()</a></p>
+    #end
+    <p></p>
+    <form action="/bands" method="post">
+      <input id="name" name="name" type="text" placeholder="name" required>
+      <button type="submit" class="btn btn-success">Add Band</button>
+    </form>
+  </div>
 </div>

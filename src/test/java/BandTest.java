@@ -10,14 +10,14 @@ public class BandTest {
 
   @Test
   public void Band_instantiatesCorrectly_true() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     assertEquals(true, myBand instanceof Band);
   }
 
   @Test
   public void getName_bandInstantiatesWithName_String() {
-    Band myBand = new Band("Household chores");
-    assertEquals("Household chores", myBand.getName());
+    Band myBand = new Band("House");
+    assertEquals("House", myBand.getName());
   }
 
   @Test
@@ -27,21 +27,21 @@ public class BandTest {
 
   @Test
   public void equals_returnsTrueIfNamesAretheSame_true() {
-    Band firstBand = new Band("Household chores");
-    Band secondBand = new Band("Household chores");
+    Band firstBand = new Band("House");
+    Band secondBand = new Band("House");
     assertTrue(firstBand.equals(secondBand));
   }
 
   @Test
   public void save_savesObjectIntoDatabase_true() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
     assertTrue(Band.all().get(0).equals(myBand));
   }
 
   @Test
   public void save_assignsIdToObject_int() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
     Band savedBand = Band.all().get(0);
     assertEquals(myBand.getId(), savedBand.getId());
@@ -49,16 +49,16 @@ public class BandTest {
 
   @Test
   public void find_findBandInDatabase_true() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
     Band savedBand = Band.find(myBand.getId());
     assertTrue(myBand.equals(savedBand));
   }
   @Test
   public void addVenue_addsVenueToBand_true() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
-    Venue myVenue = new Venue("Mow the lawn");
+    Venue myVenue = new Venue("Downtown");
     myVenue.save();
     myBand.addVenue(myVenue);
     Venue savedVenue = myBand.getVenues().get(0);
@@ -66,9 +66,9 @@ public class BandTest {
   }
   @Test
   public void getVenues_returnsAllVenues_List() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
-    Venue myVenue = new Venue("Mow the lawn");
+    Venue myVenue = new Venue("Downtown");
     myVenue.save();
     myBand.addVenue(myVenue);
     List savedVenues = myBand.getVenues();
@@ -76,9 +76,9 @@ public class BandTest {
   }
   @Test
   public void delete_deletesAllVenuesAndBandsAssociations() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
-    Venue myVenue = new Venue("Mow the lawn");
+    Venue myVenue = new Venue("Downtown");
     myVenue.save();
     myBand.addVenue(myVenue);
     myBand.delete();

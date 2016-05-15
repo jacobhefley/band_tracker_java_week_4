@@ -4,36 +4,39 @@
       <ul class="nav nav-tabs">
         <li role="presentation"><a href="/">Home</a></li>
         <li role="presentation"><a href="/bands">Bands</a></li>
-        <li role="presentation" class="active"><a href="/venues">Venues</a></li>
+        <li role="presentation"><a href="/venues">Venues</a></li>
       </ul>
     </nav>
   </div>
-<div class="jumbotron">
-  <h2>$band.getName()</h2>
-  #if($band.getVenues())
-  <p>Here are the venues for this band:</p>
-    #foreach($venue in $band.getVenues())
-      <h3>$venue.getDescription()</h3>
+  <div class="jumbotron">
+    <h2>Band: <strong>$band.getName()<strong></h2>
+    #if($band.getVenues())
+    <h4>All of the venues <strong>$band.getName()<strong> has played:</h4>
+      #foreach($visited_venue in $band.getVenues())
+        <h3>$visited_venue.getDescription()</h3>
+      #end
     #end
-  #end
-</div>
-<h4>Add a venue to this band:</h4>
-
-<form action='/add_venues' method='post'>
-  <input id="band_id" name="band_id" type="hidden" value="$band.getId()">
-  <label for="venue_id">Select a venue</label>
-  <select id='venue_id' name='venue_id' type='text'>
-    #foreach($venue in $allVenues)
-      <option value="$venue.getId()"> $venue.getDescription() </option>
-    #end
-  </select>
-  <button type="submit" class="btn btn-info">Add venue to this band</button>
-</form>
-
-<p><a href="/bands/$band.getId()/edit">Edit this band</a></p>
-
-<form action='/bands/$band.getId()/delete' method='post'>
-  <button type="submit" class="btn-danger" id="delete">Delete</button>
-</form>
-
+    <br>
+    <div class="form-inline" role="form">
+      <div class="form-group">
+        <form action='/add_venues' method='post'>
+          <input id="band_id" name="band_id" type="hidden" value="$band.getId()">
+          <select id='venue_id' name='venue_id' type='text' required>
+            #foreach($venue in $allVenues)
+              <option value="$venue.getId()"> $venue.getDescription() </option>
+            #end
+          </select>
+          <button type="submit" class="btn btn-success">Add Venue</button>
+        </form>
+      </div>
+      <div class="form-group">
+        <a href="/bands/$band.getId()/edit" class="btn btn-warning" role="button">Edit this band</a>
+      </div>
+      <div class="form-group">
+        <form action='/bands/$band.getId()/delete' method='post' >
+          <button type="submit" class="btn btn-danger" id="delete">Delete Band</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

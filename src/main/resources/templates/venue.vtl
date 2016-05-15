@@ -9,9 +9,9 @@
     </nav>
   </div>
 <div class="jumbotron">
-  <h2>$band.getName()</h2>
+  <h2>$venue.getDescription()</h2>
   #if($venue.getBands())
-  <p>Here are the venues for this band:</p>
+  <h4>Here are the bands for this venue:</h4>
     #foreach($band in $venue.getBands())
       <h3>$band.getName()</h3>
     #end

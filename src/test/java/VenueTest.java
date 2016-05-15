@@ -73,7 +73,7 @@ public class VenueTest {
   }
   @Test
   public void addBand_addsBandToVenue() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
     Venue myVenue = new Venue("Mow the lawn");
     myVenue.save();
@@ -84,7 +84,7 @@ public class VenueTest {
 
   @Test
   public void getCategories_returnsAllCategories_List() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
     Venue myVenue = new Venue("Mow the lawn");
     myVenue.save();
@@ -94,7 +94,7 @@ public class VenueTest {
   }
   @Test
   public void delete_deletesAllVenuesAndCategoriesAssociations() {
-    Band myBand = new Band("Household chores");
+    Band myBand = new Band("House");
     myBand.save();
     Venue myVenue = new Venue("Mow the lawn");
     myVenue.save();
